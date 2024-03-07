@@ -1,10 +1,10 @@
-import { Api, StackContext, use, useFunctions } from "sst/constructs";
-import { Lambdas } from "./Lambdas";
+import { Api, StackContext, use } from "sst/constructs";
+import { Translations } from "./Translations";
 
 export function API({ stack }: StackContext) {
-  const { translationFn } = use(Lambdas);
+  const { translationFn } = use(Translations);
 
-  const api = new Api(stack, "translation-api", {
+  new Api(stack, "translation-api", {
     routes: {
       "POST /api/translate/{languageCode}": {
         cdk: {

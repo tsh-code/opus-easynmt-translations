@@ -59,7 +59,6 @@ Bear in mind that without pre-loaded models it would initially take around 15s t
 ### To-do
 - [x] Docker image
 - [x] SST simple api
-- [ ] Better validation
 - [ ] Hide API behind api-key
 - [ ] Allow opus-models prefetch to reduce cold starts
 

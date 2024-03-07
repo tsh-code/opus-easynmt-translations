@@ -1,5 +1,5 @@
 import { SSTConfig } from "sst";
-import { Lambdas } from "./stacks/Lambdas";
+import { Translations } from "./stacks/Translations";
 import { API } from "./stacks/Api";
 
 export default {
@@ -10,7 +10,7 @@ export default {
     };
   },
   stacks(app) {
-    app.stack(Lambdas);
+    app.stack(Translations);
     app.stack(API);
   },
 } satisfies SSTConfig;
