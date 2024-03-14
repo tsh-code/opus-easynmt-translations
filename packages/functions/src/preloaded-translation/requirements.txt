@@ -1,0 +1,5 @@
+uvicorn[standard]
+gunicorn
+nltk
+easynmt
+sacremoses

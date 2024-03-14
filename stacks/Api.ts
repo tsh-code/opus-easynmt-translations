@@ -1,16 +1,19 @@
-import { Api, StackContext, use } from "sst/constructs";
+import { Api, Function, StackContext, use } from "sst/constructs";
 import { Translations } from "./Translations";
 
 export function API({ stack }: StackContext) {
-  const { translationFn } = use(Translations);
+  const { translationFn, translationFns } = use(Translations);
 
-  new Api(stack, "translation-api", {
+  const staticTranslationLambdas: Record<string, { function: Function }> = Object.fromEntries(
+    translationFns.map(({ key, fn }) => [`POST /api/translate/${key}`, { function: fn }])
+  );
+
+  const api = new Api(stack, "translation-api", {
     routes: {
       "POST /api/translate/{languageCode}": {
-        cdk: {
-          function: translationFn,
-        },
+        function: translationFn,
       },
+      ...staticTranslationLambdas,
     },
   });
 }
